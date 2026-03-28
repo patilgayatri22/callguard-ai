@@ -1,6 +1,6 @@
 import emailjs from '@emailjs/browser'
 
-async function sendConfirmation(title, url, toEmail) {
+export async function sendConfirmation(title, url, toEmail) {
   const templateParams = {
     title: title,
     url: url,
