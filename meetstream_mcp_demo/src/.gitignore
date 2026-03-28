@@ -1,0 +1,4 @@
+# Un-ignore the TypeScript lib source directory
+# (the root .gitignore has a `lib/` pattern intended for Python build artifacts,
+# but that would incorrectly exclude this Node.js source directory)
+!lib/
