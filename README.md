@@ -29,3 +29,31 @@ Use the LLM for structured extraction, intent detection, evidence gathering, and
 
 The LLM should classify customer state and business risk from the latest rolling window of conversation. The backend can then combine these outputs with deterministic thresholds to decide which actions are safe to trigger.
 
+## Suggested stack
+
+•	Frontend: React / Next.js for a polished live dashboard, or Streamlit for the fastest MVP.
+•	Backend: Python FastAPI is ideal for rapid AI orchestration and API integration.
+•	Model layer: OpenAI or Claude for extraction and reasoning; optional lightweight scoring functions in Python.
+•	Integrations: Slack API, mock CRM or HubSpot/Salesforce sandbox, and Zendesk or Jira for ticket creation.
+•	Auth: Scalekit for authentication, user identity, and scoped authorization checks.
+
+## End-to-end workflow
+
+1.	The meeting agent receives a fresh transcript chunk every few seconds.
+2.	The backend forms a rolling context window from the latest transcript turns.
+3.	The AI service extracts sentiment, churn risk, refund likelihood, escalation need, and evidence snippets.
+4.	The policy engine evaluates thresholds and determines candidate actions.
+5.	Authorization checks confirm which actions are permitted for the current user.
+6.	Allowed actions are executed through downstream APIs; blocked actions are logged with a clear policy reason.
+7.	The dashboard updates in real time so the judges see the full loop from speech to analysis to action.
+
+## System prompt skeleton:
+You analyze live customer-support conversation windows. Return only valid JSON. Identify sentiment, churn_risk, refund_likelihood, escalation_needed, detected_intents, and evidence snippets. Base scores only on the provided transcript. Be conservative: if the signal is weak, lower confidence rather than overpredict. Also suggest candidate actions from the allowed set [create_ticket, update_crm, notify_manager, trigger_refund].
+
+
+
+
+
+
+
+
