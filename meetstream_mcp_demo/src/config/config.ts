@@ -13,6 +13,8 @@ interface Config {
   mcpServerId: string;
   protectedResourceMetadata: string;
   publicUrl: string;
+  upstreamUrl: string;
+  mcpBearerToken: string;
 }
 
 const PORT = parseInt(process.env.PORT || '3002', 10);
@@ -28,4 +30,6 @@ export const config: Config = {
   mcpServerId: process.env.MCP_SERVER_ID || '',
   protectedResourceMetadata: process.env.PROTECTED_RESOURCE_METADATA || '',
   publicUrl: process.env.PUBLIC_URL || '',
+  upstreamUrl: (process.env.MCP_UPSTREAM_URL || '').replace(/\/$/, ''),
+  mcpBearerToken: process.env.MCP_BEARER_TOKEN || '',
 };
